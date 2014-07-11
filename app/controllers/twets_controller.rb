@@ -9,9 +9,15 @@ class TwetsController < ApplicationController
   #   @twets # => All twets defaultly shown to the authenticated user.
   #
   def index
-    get_twets
+    username = params[:profilename]
+    user_object = User.find_by_name(username)
+    get_twets(user_object)    
   end
 
+  def get_twets(user_object)
+    @twets = user_object.all_tweets
+  end
+  
   # POST /twets
   #
   # Used to create a new twet for the authenticated user based on the data passed
