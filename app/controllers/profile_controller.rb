@@ -1,4 +1,4 @@
-class TwetsController < ApplicationController
+class ProfileController < ApplicationController
   # All actions in this controller require the presence of an authenticated user.
   before_filter :authenticate_user!
 
@@ -11,11 +11,11 @@ class TwetsController < ApplicationController
   def index
     username = params[:profilename]
     user_object = User.find_by_username(username)
-    get_twets(user_object)    
+    get_profile(user_object)    
   end
 
-  def get_twets(user_object)
-    @twets = user_object.all_twets
+  def get_profile(user_object)
+    @profilename = user_object.profile
   end
   
   # POST /twets
@@ -31,34 +31,21 @@ class TwetsController < ApplicationController
   #                to the authenticated user.
   #
   #
+  
+
+  
+  
   def create
-    @twet = current_user.twets.create(twet_params)
-    if @twet.valid?
-      flash[:success] = "Your twet was shared"
+    @profilename = current_user.username.create(profile_params)
+    if @profile.valid?
+      flash[:success] = "Your profile was created"
       redirect_to :action => :index and return
     else
-      get_twets
-      flash[:error] = "Your twet could not be saved"
+      get_profile
+      flash[:error] = "Your profile could not be saved"
       render :action => :index and return
     end
   end
 
-  private
 
-  # Sets the @twets instance variable to all twets viewable by the current user
-  
-  def get_twets
-    @twets = current_user.all_twets
-  end
-
-  # http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
-  #
-  # This method uses Strong Parameters to ensure that the data passed by the user
-  # is appropriate. If params[:twet] does not exist or contains any key / value
-  # pairs other then :content, an error will be raised and the page will return
-  # a 400 'Bad Request' HTML response code.
-  #
-  def twet_params
-    params.require(:twet).permit(:content)
-  end
 end
