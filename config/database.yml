@@ -7,18 +7,21 @@
 
 development:
   adapter: postgresql
+  encoding: unicode
   database: my_database_development
   pool: 5
   timeout: 5000
 
 test:
   adapter: postgresql
+  encoding: unicode
   database: my_database_test
   pool: 5
   timeout: 5000
 
 production:
   adapter: postgresql
+  encoding: unicode
   database: my_database_production
   pool: 5
   timeout: 5000

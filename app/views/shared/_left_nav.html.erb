@@ -1,6 +1,6 @@
 <div class="col-md-4">
   <ul class="nav nav-pills nav-stacked well text-left">
-    <li>
+	<li>
       <%= content_tag :strong, current_user.name %>
     </li>
     <li>
@@ -10,6 +10,7 @@
       <table class="table table-bordered stats">
         <tbody>
           <tr>
+			<td><%= image_tag avatar_url(current_user) %></td>
             <td>
               <%= content_tag :h4, current_user.twets.count %>
               <%= content_tag :small, 'Twets', :class => "uppercase lighter" %>

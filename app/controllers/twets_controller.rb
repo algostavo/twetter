@@ -14,10 +14,19 @@ class TwetsController < ApplicationController
     get_twets(user_object)    
   end
 
+
   def get_twets(user_object)
     @twets = user_object.all_twets
   end
+
+
+  def get_twets
+    @twets = current_user.all_twets
+  end
+
+
   
+    
   # POST /twets
   #
   # Used to create a new twet for the authenticated user based on the data passed
@@ -47,9 +56,7 @@ class TwetsController < ApplicationController
 
   # Sets the @twets instance variable to all twets viewable by the current user
   
-  def get_twets
-    @twets = current_user.all_twets
-  end
+ 
 
   # http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
