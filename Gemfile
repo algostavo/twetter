@@ -9,7 +9,7 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '1.3.8'
 
-
+gem 'ffaker', require: false
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.0.0.0.rc'
@@ -57,5 +57,4 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'pg'
-  gem 'ffaker', require: false
 end
