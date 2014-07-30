@@ -11,22 +11,10 @@ class TwetsController < ApplicationController
   def index
     username = params[:profilename]
     user_object = User.find_by_username(username)
-    get_twets(user_object)    
+    get_twets(user_object)  
   end
-
-
-  def get_twets(user_object)
-    @twets = user_object.all_twets
-  end
-
-
-  def get_twets
-    @twets = current_user.all_twets
-  end
-
-
   
-    
+
   # POST /twets
   #
   # Used to create a new twet for the authenticated user based on the data passed
@@ -51,13 +39,30 @@ class TwetsController < ApplicationController
       render :action => :index and return
     end
   end
+  
+  
+  
+  def retwet
+    @twet = current_user.twets.retwet(twet_params)
+    if @twet.valid?
+      flash[:success] = "You retwet complete"
+      redirect_to :action => :index and return
+    else
+      get_twets
+      flash[:error] = "You retwet was not completed"
+      render :action => :index and return
+    end
+  end
+  
 
   private
 
-  # Sets the @twets instance variable to all twets viewable by the current user
-  
- 
 
+  # Sets the @twets instance variable to all twets viewable by the current user
+  def get_twets(user_object)
+    @twets = user_object.all_twets
+  end
+  
   # http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # This method uses Strong Parameters to ensure that the data passed by the user
@@ -69,3 +74,4 @@ class TwetsController < ApplicationController
     params.require(:twet).permit(:content)
   end
 end
+
