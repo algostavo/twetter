@@ -57,6 +57,4 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'pg'
-  gem 'ffaker', require: false
-  gem 'dotenv'
 end

@@ -3,6 +3,9 @@
 	<li>
       <%= content_tag :strong, current_user.name %>
     </li>
+	<li>
+	  <%= image_tag  avatar_url(current_user) %>
+	</li>
     <li>
       <%= content_tag :small, '@'+current_user.username %>
     </li>
@@ -10,7 +13,6 @@
       <table class="table table-bordered stats">
         <tbody>
           <tr>
-			<td><%= image_tag avatar_url(current_user) %></td>
             <td>
               <%= content_tag :h4, current_user.twets.count %>
               <%= content_tag :small, 'Twets', :class => "uppercase lighter" %>

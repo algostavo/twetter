@@ -1,4 +1,4 @@
-##require 'ffaker'
+
 
 namespace :seed do
   desc "Create 5 twets for each user"
