@@ -18,6 +18,19 @@
         <%= content_tag :small, twet.created_at.strftime("%b %-d"), :class => 'text-muted text-middle pull-right' %>
         <div class="clearfix"></div>
         <%= content_tag :p, twet.content %>
+	    <%= form_for (@twet || :twet), :url => twets_path,
+	                         :builder => InlineErrorsBuilder,
+	                         :method => :POST,
+	                         :role => :form do |f| %>
+	      <div class="mar-top-15">
+	        <%= content_tag :div, :class => f.validation_class(:content, "form-group") do %>
+	          <%= f.text_area :content, :placeholder => "Retwet this Twet...", :class => 'form-control' %>
+	          <%= f.errors_for :content %>
+	        <% end %>
+
+	        <%= f.submit "Retwet", :class => "btn btn-primary pull-right" %>
+	      </div>
+	    <% end %>
       </li>
       <li><hr></li>
       <% end -%>

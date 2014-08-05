@@ -153,7 +153,7 @@ nav {
   position: fixed;
   top: 0;
   z-index: 1050;
-  color: white;
+  color: #fff;
   width: 100%;
   text-align: center;
 }
@@ -161,6 +161,7 @@ nav {
 .alert-float .alert {
   z-index: 1050;
   padding: 10px;
+  color:   #fff;
 }
 
 table.stats {

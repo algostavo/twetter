@@ -43,9 +43,9 @@ class TwetsController < ApplicationController
   
   
   def retwet
-    @twet = current_user.twets.retwet(twet_params)
+    @twet = current_user.twet.retwet
     if @twet.valid?
-      flash[:success] = "You retwet complete"
+      flash[:success] = "You retwetted that twet"
       redirect_to :action => :index and return
     else
       get_twets
@@ -61,8 +61,7 @@ class TwetsController < ApplicationController
   # Sets the @twets instance variable to all twets viewable by the current user
   def get_twets(user_object)
     @twets = user_object.all_twets
-  end
-  
+end
   # http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # This method uses Strong Parameters to ensure that the data passed by the user
