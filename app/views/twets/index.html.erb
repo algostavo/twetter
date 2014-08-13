@@ -24,7 +24,7 @@
 	                         :role => :form do |f| %>
 	      <div class="mar-top-15">
 	        <%= content_tag :div, :class => f.validation_class(:content, "form-group") do %>
-	          <%= f.text_area :content, :placeholder => "Retwet this Twet...", :class => 'form-control' %>
+	          <%= f.text_area :content, :value => twet.content, :placeholder => "Retwet this Twet...", :class => 					'form-control' %>
 	          <%= f.errors_for :content %>
 	        <% end %>
 
