@@ -11,7 +11,7 @@ class TwetsController < ApplicationController
   def index
     username = params[:profilename]
     user_object = User.find_by_username(username)
-    get_twets(user_object)  
+    @twets = get_twets(user_object)  
   end
   
 
@@ -34,7 +34,6 @@ class TwetsController < ApplicationController
       flash[:success] = "Your twet was shared"
       redirect_to :action => :index and return
     else
-      get_twets
       flash[:error] = "Your twet could not be saved"
       render :action => :index and return
     end
@@ -48,7 +47,6 @@ class TwetsController < ApplicationController
       flash[:success] = "You retwetted that twet"
       redirect_to :action => :index and return
     else
-      get_twets
       flash[:error] = "You retwet was not completed"
       render :action => :index and return
     end
@@ -60,7 +58,11 @@ class TwetsController < ApplicationController
 
   # Sets the @twets instance variable to all twets viewable by the current user
   def get_twets(user_object)
-    @twets = user_object.all_twets
+    if user_object.nil?
+      twets = current_user.all_twets
+  else
+      twets = user_object.all_twets
+  end
 end
   # http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
